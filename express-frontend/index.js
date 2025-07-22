@@ -7,5 +7,5 @@ app.get("/", (req, res) => {
 });
 
 app.listen(port, "0.0.0.0", () => {
-  console.log(`Express app listening at http://127.0.0.1:${port}`);
+  console.log(`Express app listening at http://0.0.0.0:${port}`);
 });
