@@ -22,7 +22,9 @@ pipeline {
 
         stage('Restart App') {
             steps {
-                sh 'pm2 restart express-app || pm2 start express-frontend/app.js --name express-app'
+                dir('express-frontend') {
+                    sh 'pm2 restart express-app || pm2 start app.js --name express-app'
+                }
             }
         }
     }

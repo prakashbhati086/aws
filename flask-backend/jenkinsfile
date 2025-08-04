@@ -18,7 +18,9 @@ pipeline {
 
         stage('Restart App') {
             steps {
-                sh 'pm2 restart flask-app || pm2 start flask-backend/app.py --name flask-app'
+                dir('flask-backend') {
+                    sh 'pm2 restart flask-app || pm2 start app.py --name flask-app'
+                }
             }
         }
     }
