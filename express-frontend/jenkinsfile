@@ -1,0 +1,29 @@
+pipeline {
+    agent any
+
+    tools {
+        nodejs 'NodeJS 18'
+    }
+
+    stages {
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/prakashbhati086/aws.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                dir('express-frontend') {
+                    sh 'npm install'
+                }
+            }
+        }
+
+        stage('Restart App') {
+            steps {
+                sh 'pm2 restart express-app || pm2 start express-frontend/app.js --name express-app'
+            }
+        }
+    }
+}

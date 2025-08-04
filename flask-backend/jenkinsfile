@@ -1,0 +1,25 @@
+pipeline {
+    agent any
+
+    stages {
+        stage('Clone Code') {
+            steps {
+                git 'https://github.com/prakashbhati086/aws.git'
+            }
+        }
+
+        stage('Install Dependencies') {
+            steps {
+                dir('flask-backend') {
+                    sh 'pip3 install -r requirements.txt'
+                }
+            }
+        }
+
+        stage('Restart App') {
+            steps {
+                sh 'pm2 restart flask-app || pm2 start flask-backend/app.py --name flask-app'
+            }
+        }
+    }
+}
