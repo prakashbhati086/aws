@@ -2,11 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Clone Code') {
+         stage('Clone Code') {
             steps {
-                git 'https://github.com/prakashbhati086/aws.git'
+                git branch: 'main', url: 'https://github.com/prakashbhati086/aws.git'
             }
-        }
+            }
 
         stage('Install Dependencies') {
             steps {
